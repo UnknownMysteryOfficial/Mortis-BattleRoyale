@@ -1,0 +1,9 @@
+battleroyale:
+  world-name: "lobby_br" # Name of the lobby where players are teleported for que.
+  player-size: 10 # Numbers of player needed to start the match.
+  location:
+
+resurgence:
+  world-name: "lobby_dm" # Name of the lobby where players are teleported for que.
+  player-size: 10 # Numbers of player needed to start the match.
+  location:

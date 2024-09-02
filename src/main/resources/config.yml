@@ -1,0 +1,15 @@
+battleroyale:
+  world-size: 500 # 500 means 500x500
+  pvp-enabled-time: 60 # in seconds
+  tp-world: "spawn" # this is the world where players will be teleported upon winning or leaving match.
+resurgence:
+  world-size: 200 # 200 means 200x200
+  tp-world: "spawn" # this is the world where players will be teleported upon winning or leaving match.
+
+# Commands that are restricted while in the match world. (World names starting with battleroyale or resurgence are included as match world.)
+restricted-commands:
+  commands:
+    - "tp"
+    - "home"
+    - "spawn"
+    - "warp"

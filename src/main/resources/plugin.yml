@@ -1,0 +1,24 @@
+name: MortisBattleRoyale
+version: '1.3.2'
+main: org.mortisdevelopment.mortisBattleRoyale.MortisBattleRoyale
+api-version: '1.13'
+depend:
+  - TerraformGenerator
+commands:
+  setlobbybr:
+    description: Sets the spawnpoint for your battleroyale lobby.
+  setlobbyrs:
+    description: Sets the spawnpoint for your resurgence lobby.
+  br:
+    description: Opens the GUI for the BattleRoyale.
+  brleave:
+    description: Leave the ongoing BattleRoyale match.
+  rsleave:
+    description: Leave the ongoing Resurgence match.
+permissions:
+  mortis.battleroyale.gui:
+    description: Open the battleroyale GUI.
+  mortis.battleroyale.setlobbybr:
+    description: Set the lobby spawnpoint for battleroyale.
+  mortis.battleroyale.setlobbyrs:
+    description: Set the lobby spawnpoint for resurgence.

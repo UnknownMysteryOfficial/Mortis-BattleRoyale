@@ -1,0 +1,7 @@
+br-not-enough-players: "&cWaiting for enough players to start the match."
+rs-not-enough-players: "&cWaiting for enough players to start the match."
+br-lobby-full: "&aLobby is full, teleporting all the players to the battle zone..."
+rs-lobby-full: "&aLobby is full, teleporting all the players to the resurgence zone..."
+lobby-set-br: "&aSuccessfully set lobby spawn at your current location for battleroyale."
+lobby-set-dm: "&aSuccessfully set lobby spawn at your current location resurgence."
+br-elimination: "&cEliminated! [Tip: You can spectate the match or do /brleave to leave the match and que for another one if you wish to.]"
