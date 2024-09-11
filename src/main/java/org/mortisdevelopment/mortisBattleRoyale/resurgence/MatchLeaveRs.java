@@ -44,6 +44,7 @@ public class MatchLeaveRs implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "You have successfully left the match.");
                     player.teleport(tpLocation);
                     player.setGameMode(GameMode.SURVIVAL);
+                    player.getInventory().clear();
                 }
             }
         }

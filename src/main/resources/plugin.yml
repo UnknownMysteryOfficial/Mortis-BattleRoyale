@@ -1,5 +1,5 @@
 name: MortisBattleRoyale
-version: '1.3.2'
+version: '1.3.3'
 main: org.mortisdevelopment.mortisBattleRoyale.MortisBattleRoyale
 api-version: '1.13'
 depend:

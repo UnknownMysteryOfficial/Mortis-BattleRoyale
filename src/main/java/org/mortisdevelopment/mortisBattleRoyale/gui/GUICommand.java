@@ -57,7 +57,6 @@ public class GUICommand implements CommandExecutor {
                     brmeta.setUnbreakable(true);
                     brmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                     brmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    brmeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
                     brmeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
                     ArrayList<String> brLore = new ArrayList<>();
                     brLore.add(ChatColor.GOLD + " ");
@@ -80,7 +79,6 @@ public class GUICommand implements CommandExecutor {
                     dmmeta.setUnbreakable(true);
                     dmmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                     dmmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    dmmeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
                     dmmeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
                     ArrayList<String> dmLore = new ArrayList<>();
                     dmLore.add(ChatColor.GOLD + " ");
@@ -104,7 +102,6 @@ public class GUICommand implements CommandExecutor {
                     fillerMeta.setUnbreakable(true);
                     fillerMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                     fillerMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    fillerMeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
                     fillerMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
                     ArrayList<String> fillerLore = new ArrayList<>();
                     fillerLore.add(ChatColor.GOLD + " ");

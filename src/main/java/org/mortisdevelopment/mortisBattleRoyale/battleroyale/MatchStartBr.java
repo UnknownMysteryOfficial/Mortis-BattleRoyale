@@ -248,6 +248,7 @@ public class MatchStartBr implements Listener {
             for (Player player : world.getPlayers()) {
                 player.setGameMode(GameMode.SURVIVAL);
                 player.teleport(tpWorld.getSpawnLocation());
+                player.getInventory().clear();
             }
             Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "Battleroyale");
             Bukkit.broadcastMessage(ChatColor.GOLD + winner.getName() + " is the winner! Congratulations!");
