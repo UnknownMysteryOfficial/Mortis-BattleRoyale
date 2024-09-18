@@ -8,22 +8,8 @@
 #                                                                                        __/ |
 #                                                                                       |___/
 #===============================================================================================================
-# Mortis BattleRoyale v1.3.4 Lobbies Configuration
+# Mortis BattleRoyale v1.3.4 Data
 # Spigot https://www.spigotmc.org/resources/✨mortis-battle-royale✨-loot-survive-fight-be-the-last-one-standing.113383/
 # Github https://github.com/UnknownMysteryOfficial/Mortis-BattleRoyale
 # Discord https://discord.gg/BZPepWZMFf
 # Join discord for support
-#======================================================#
-#               BattleRoyale Settings                  #
-#======================================================#
-battleroyale:
-  world-name: "lobby_br" # Name of the lobby where players are teleported for que.
-  player-size: 10 # Numbers of player needed to start the match.
-  location:
-#======================================================#
-#               Resurgence Settings                    #
-#======================================================#
-resurgence:
-  world-name: "lobby_dm" # Name of the lobby where players are teleported for que.
-  player-size: 10 # Numbers of player needed to start the match.
-  location:

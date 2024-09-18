@@ -8,22 +8,20 @@
 #                                                                                        __/ |
 #                                                                                       |___/
 #===============================================================================================================
-# Mortis BattleRoyale v1.3.4 Lobbies Configuration
+# Mortis BattleRoyale v1.3.4 Loots Configuration
 # Spigot https://www.spigotmc.org/resources/✨mortis-battle-royale✨-loot-survive-fight-be-the-last-one-standing.113383/
 # Github https://github.com/UnknownMysteryOfficial/Mortis-BattleRoyale
 # Discord https://discord.gg/BZPepWZMFf
 # Join discord for support
 #======================================================#
-#               BattleRoyale Settings                  #
+#               Loots Drop                             #
 #======================================================#
-battleroyale:
-  world-name: "lobby_br" # Name of the lobby where players are teleported for que.
-  player-size: 10 # Numbers of player needed to start the match.
-  location:
-#======================================================#
-#               Resurgence Settings                    #
-#======================================================#
-resurgence:
-  world-name: "lobby_dm" # Name of the lobby where players are teleported for que.
-  player-size: 10 # Numbers of player needed to start the match.
-  location:
+# List of loots that will be spawned inside the loot chests.
+# The format is ITEM:AMOUNT:PROBABILITY
+loots:
+  - DIAMOND_CHESTPLATE:1:25
+  - DIAMOND_LEGGINGS:1:25
+  - DIAMOND_HELMET:1:25
+  - DIAMOND_BOOTS:1:25
+  - DIAMOND_SWORD:1:25
+  - GOLDEN_APPLE:8:50

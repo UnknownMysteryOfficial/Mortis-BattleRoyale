@@ -10,16 +10,20 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.inventory.ItemStack;
 import org.mortisdevelopment.mortisBattleRoyale.MortisBattleRoyale;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class MatchStartRs implements Listener {
     private final MortisBattleRoyale plugin;
     private final Map<UUID, Integer> playerKills = new HashMap<>();
+
 
     public MatchStartRs(MortisBattleRoyale plugin) {
         this.plugin = plugin;
@@ -31,6 +35,10 @@ public class MatchStartRs implements Listener {
             plugin.saveResource(name, true);
         }
         return file;
+    }
+
+    public int getPlayerKills(UUID playerId) {
+        return playerKills.getOrDefault(playerId, 0);
     }
 
     @EventHandler
@@ -119,6 +127,9 @@ public class MatchStartRs implements Listener {
     private void teleportToSkyAndGiveElytra(Player player, World world) {
         Location highLocation = new Location(world, world.getSpawnLocation().getX(), world.getMaxHeight(), world.getSpawnLocation().getZ());
         player.teleport(highLocation);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 300, 0));
+        ItemStack fireworks = new ItemStack(Material.FIREWORK_ROCKET, 5);
+        player.getInventory().addItem(fireworks);
 
         ItemStack originalChestplate = player.getInventory().getChestplate();
 
@@ -137,6 +148,11 @@ public class MatchStartRs implements Listener {
             @Override
             public void run() {
                 if (player.isOnGround()) {
+                    for (ItemStack item : player.getInventory().getContents()) {
+                        if (item != null && item.getType() == Material.FIREWORK_ROCKET) {
+                            player.getInventory().remove(item);
+                        }
+                    }
                     if (player.hasMetadata("originalChestplate") && !player.getMetadata("originalChestplate").isEmpty()) {
                         ItemStack originalChestplate = (ItemStack) player.getMetadata("originalChestplate").get(0).value();
                         player.getInventory().setChestplate(originalChestplate);
@@ -221,6 +237,7 @@ public class MatchStartRs implements Listener {
                 player.setGameMode(GameMode.SURVIVAL);
                 player.teleport(tpWorld.getSpawnLocation());
                 player.getInventory().clear();
+
             }
 
             Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "Resurgence:");
@@ -269,4 +286,7 @@ public class MatchStartRs implements Listener {
         }
         worldFolder.delete();
     }
+
+
+
 }

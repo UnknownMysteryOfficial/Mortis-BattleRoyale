@@ -3,18 +3,24 @@ package org.mortisdevelopment.mortisBattleRoyale;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mortisdevelopment.mortisBattleRoyale.battleroyale.LootDropBr;
 import org.mortisdevelopment.mortisBattleRoyale.battleroyale.MatchLeaveBr;
+import org.mortisdevelopment.mortisBattleRoyale.battleroyale.WinsPlaceholder;
 import org.mortisdevelopment.mortisBattleRoyale.lobby.LobbyRsSetCommand;
+import org.mortisdevelopment.mortisBattleRoyale.resurgence.LootDropRs;
 import org.mortisdevelopment.mortisBattleRoyale.resurgence.MatchLeaveRs;
 import org.mortisdevelopment.mortisBattleRoyale.gui.GUICommand;
 import org.mortisdevelopment.mortisBattleRoyale.gui.GUIHandler;
 import org.mortisdevelopment.mortisBattleRoyale.battleroyale.MatchStartBr;
 import org.mortisdevelopment.mortisBattleRoyale.lobby.LobbyBrSetCommand;
 import org.mortisdevelopment.mortisBattleRoyale.resurgence.MatchStartRs;
+import org.mortisdevelopment.mortisBattleRoyale.resurgence.KillsPlaceholder;
 
 import java.io.File;
 
 public final class MortisBattleRoyale extends JavaPlugin {
+
+    private MatchStartRs matchStartRs;
 
     @Override
     public void onEnable() {
@@ -25,7 +31,18 @@ public final class MortisBattleRoyale extends JavaPlugin {
         File file2 = getFile("messages.yml");
         FileConfiguration config2 = YamlConfiguration.loadConfiguration(file2);
 
+        File file3 = getFile("loots.yml");
+        FileConfiguration configuration3 = YamlConfiguration.loadConfiguration(file3);
+
+        File file4 = getFile("data.yml");
+        FileConfiguration configuration4 = YamlConfiguration.loadConfiguration(file3);
+
         saveDefaultConfig();
+        new LootDropBr(this);
+        new LootDropRs(this);
+        new KillsPlaceholder(this).register();
+        new WinsPlaceholder(this).register();
+        matchStartRs = new MatchStartRs(this);
         getServer().getPluginManager().registerEvents(new MatchStartBr(this), this);
         getServer().getPluginManager().registerEvents(new MatchStartRs(this), this);
         getServer().getPluginManager().registerEvents(new GUIHandler(this), this);
@@ -43,6 +60,10 @@ public final class MortisBattleRoyale extends JavaPlugin {
             saveResource(name, true);
         }
         return file;
+    }
+
+    public MatchStartRs getMatchStartRs() {
+        return matchStartRs;
     }
 
     @Override

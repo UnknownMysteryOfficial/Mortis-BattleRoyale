@@ -3,6 +3,7 @@ package org.mortisdevelopment.mortisBattleRoyale.battleroyale;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,10 +12,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mortisdevelopment.mortisBattleRoyale.MortisBattleRoyale;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 public class MatchStartBr implements Listener {
 
@@ -152,6 +157,9 @@ public class MatchStartBr implements Listener {
             if (player.getWorld().getName().equalsIgnoreCase(lobbyWorldName)) {
                 Location highLocation = new Location(world, spawnLocation.getX(), world.getMaxHeight(), spawnLocation.getZ());
                 player.teleport(highLocation);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 300, 0));
+                ItemStack fireworks = new ItemStack(Material.FIREWORK_ROCKET, 5);
+                player.getInventory().addItem(fireworks);
 
                 ItemStack elytra = new ItemStack(Material.ELYTRA);
                 player.getInventory().setChestplate(elytra);
@@ -172,6 +180,11 @@ public class MatchStartBr implements Listener {
                 if (player.isOnGround()) {
                     if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().getType() == Material.ELYTRA) {
                         player.getInventory().setChestplate(new ItemStack(Material.AIR));
+                        for (ItemStack item : player.getInventory().getContents()) {
+                            if (item != null && item.getType() == Material.FIREWORK_ROCKET) {
+                                player.getInventory().remove(item);
+                            }
+                        }
                     }
                     cancel();
                 }
@@ -243,12 +256,26 @@ public class MatchStartBr implements Listener {
         FileConfiguration configuration = YamlConfiguration.loadConfiguration(configYML);
         String tpWorldName = configuration.getString("battleroyale.tp-world");
 
+        File data = getFile("data.yml");
+        FileConfiguration dataConfig = YamlConfiguration.loadConfiguration(data);
+
         World tpWorld = Bukkit.getWorld(tpWorldName);
         if (tpWorld != null) {
             for (Player player : world.getPlayers()) {
                 player.setGameMode(GameMode.SURVIVAL);
                 player.teleport(tpWorld.getSpawnLocation());
                 player.getInventory().clear();
+
+                UUID uuid = player.getUniqueId();
+                String path = uuid.toString() + ".br-wins";
+                int currentWins = dataConfig.getInt(path, 0);
+                dataConfig.set(path, currentWins + 1);
+                try {
+                    dataConfig.save(data);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
             Bukkit.broadcastMessage(ChatColor.DARK_AQUA + "Battleroyale");
             Bukkit.broadcastMessage(ChatColor.GOLD + winner.getName() + " is the winner! Congratulations!");
